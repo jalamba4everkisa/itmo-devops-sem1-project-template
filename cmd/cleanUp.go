@@ -5,8 +5,7 @@ import (
 	"os"
 )
 
-//Подчистка мусора, после создания и упаковки csv в zip
-
+// Подчистка мусора, после создания и упаковки csv в zip
 func CleanUp() {
 	os.Remove("data.csv")
 	os.Remove("data.zip")
