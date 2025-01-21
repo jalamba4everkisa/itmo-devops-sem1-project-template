@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 sudo apt update -y
 sudo apt install wget -y
 
@@ -16,7 +16,6 @@ sudo bash -c "echo -e 'host   $DB_PG           $USER_PG          0.0.0.0/0      
 sudo systemctl restart postgresql
 sudo -u postgres psql -c 'CREATE DATABASE "'$DB_PG'";'
 sudo -u postgres psql -d $DB_PG -c "CREATE USER $USER_PG WITH PASSWORD '$PASSWORD_PG';"
-sudo -u postgres psql -d $DB_PG -c "GRANT ALL PRIVILEGES ON DATABASE $DB_PG to $USER_PG;"
 sudo -u postgres psql -d $DB_PG -c "CREATE TABLE prices(
                                         id INTEGER PRIMARY KEY NOT NULL,
                                         name VARCHAR NOT NULL,
@@ -25,4 +24,4 @@ sudo -u postgres psql -d $DB_PG -c "CREATE TABLE prices(
                                         create_date DATE NOT NULL
                                     )";
 sudo -u postgres psql -d $DB_PG -c "GRANT SELECT, UPDATE, INSERT,DELETE ON prices TO $USER_PG;"
-sudo systemctl restart postgresql
+rm https://go.dev/dl/go1.23.5.linux-amd64.tar.gz
