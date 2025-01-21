@@ -11,6 +11,9 @@ go get github.com/jackc/pgx/v5
 go get github.com/joho/godotenv
 sudo apt install postgresql -y
 export $(grep -v '^#' .env | xargs) 
+sudo bash -c "echo -e 'local   all             all                                  trust' > /etc/postgresql/16/main/pg_hba.conf"
+sudo bash -c "echo -e 'host   $DB_PG           $USER_PG          0.0.0.0/0            md5' >> /etc/postgresql/16/main/pg_hba.conf"
+sudo systemctl restart postgresql
 sudo -u postgres psql -c 'CREATE DATABASE "'$DB_PG'";'
 sudo -u postgres psql -d $DB_PG -c "CREATE USER $USER_PG WITH PASSWORD '$PASSWORD_PG';"
 sudo -u postgres psql -d $DB_PG -c "GRANT ALL PRIVILEGES ON DATABASE $DB_PG to $USER_PG;"
@@ -22,5 +25,4 @@ sudo -u postgres psql -d $DB_PG -c "CREATE TABLE prices(
                                         create_date DATE NOT NULL
                                     )";
 sudo -u postgres psql -d $DB_PG -c "GRANT SELECT, UPDATE, INSERT,DELETE ON prices TO $USER_PG;"
-sudo bash -c "echo -e 'host    all             all             0.0.0.0/0            md5' > /etc/postgresql/16/main/pg_hba.conf"
 sudo systemctl restart postgresql
