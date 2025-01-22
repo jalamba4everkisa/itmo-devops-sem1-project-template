@@ -1,7 +1,7 @@
 #!/bin/bash
 export PGPASSWORD=$POSTGRES_PASSWORD
 sudo systemctl start postgresql
-sudo systemctl status postgresql
+netstat -tulnp
 sudo -u postgres psql -c 'CREATE DATABASE "'$POSTGRES_DB'";'
 #psql -U postgres -d $POSTGRES_DB -c "CREATE USER $POSTGRES_USER WITH PASSWORD '$POSTGRES_PASSWORD';"
 #psql -U postgres -d $POSTGRES_DB -c "CREATE TABLE prices(
