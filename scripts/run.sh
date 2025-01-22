@@ -1,9 +1,7 @@
 #!/bin/bash
 export PGPASSWORD=$POSTGRES_PASSWORD
-sudo apt update -y
-sudo apt install postgresql -y
 sudo systemctl start postgresql
-sudo -u postgres psql -c 'CREATE DATABASE "'$POSTGRES_DB'";'
+psql -U $POSTGRES_USER -c 'CREATE DATABASE "'$POSTGRES_DB'";'
 #psql -U postgres -d $POSTGRES_DB -c "CREATE USER $POSTGRES_USER WITH PASSWORD '$POSTGRES_PASSWORD';"
 #psql -U postgres -d $POSTGRES_DB -c "CREATE TABLE prices(
 #                                        id INTEGER PRIMARY KEY NOT NULL,
