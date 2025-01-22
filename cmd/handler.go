@@ -11,8 +11,9 @@ import (
 //главный хэндлер, роутящий на функции в зависимости от запроса
 
 func PricesHandler(w http.ResponseWriter, r *http.Request) {
-	u, p, db := LoadEnv()
-	connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s", u, p, "localhost", "5432", db)
+	//u, p, db := LoadEnv()
+	//connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s", u, p, "localhost", "5432", db)
+	connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s", "validator", "val1dat0r", "localhost", "5432", "project-sem-1")
 	conn, err := NewPostgres(connStr)
 	if err != nil {
 		log.Fatalf("Error : %v", err)
