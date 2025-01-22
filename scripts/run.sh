@@ -1,5 +1,7 @@
 #!/bin/bash
 export PGPASSWORD=$POSTGRES_PASSWORD
+sudo bash -c "echo -e 'local   all             all                                  trust' > /etc/postgresql/15/main/pg_hba.conf"
+sudo bash -c "echo -e 'host   $POSTGRES_DB           $POSTGRES_USER          0.0.0.0/0            md5' >> /etc/postgresql/15/main/pg_hba.conf"
 sudo systemctl start postgresql
 echo $POSTGRES_DB
 sudo -u postgres psql -c 'CREATE DATABASE "'$POSTGRES_DB'";'
