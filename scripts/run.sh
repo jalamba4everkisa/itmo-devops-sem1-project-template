@@ -1,7 +1,8 @@
 #!/bin/bash
 export PGPASSWORD=$POSTGRES_PASSWORD
 sudo systemctl start postgresql
-sudo -u $POSTGRES_USER psql -c 'CREATE DATABASE "'$POSTGRES_DB'";'
+sudo cat /etc/postgresql/16/main/pg_hba.conf
+sudo -u postgres psql -c 'CREATE DATABASE "'$POSTGRES_DB'";'
 #psql -U postgres -d $POSTGRES_DB -c "CREATE USER $POSTGRES_USER WITH PASSWORD '$POSTGRES_PASSWORD';"
 #psql -U postgres -d $POSTGRES_DB -c "CREATE TABLE prices(
 #                                        id INTEGER PRIMARY KEY NOT NULL,
