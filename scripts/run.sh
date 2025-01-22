@@ -1,6 +1,6 @@
 #!/bin/bash
 export PGPASSWORD=$POSTGRES_PASSWORD
-systemctl start postgresql
+sudo systemctl start postgresql
 psql -U postgres -c 'CREATE DATABASE "'$POSTGRES_DB'";'
 psql -U postgres -d $POSTGRES_DB -c "CREATE USER $POSTGRES_USER WITH PASSWORD '$POSTGRES_PASSWORD';"
 psql -U postgres -d $POSTGRES_DB -c "CREATE TABLE prices(
