@@ -7,7 +7,7 @@ psql -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES_HOST -c "CREATE TABLE prices
                                         category VARCHAR NOT NULL,
                                         price REAL NOT NULL,
                                         create_date DATE NOT NULL
-                                    )";
+                                    );"
 psql -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES_HOST -c "GRANT SELECT, UPDATE, INSERT,DELETE ON prices TO $POSTGRES_USER;"
 psql -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES_HOST -c "SELECT * FROM prices;"
 go run . &
