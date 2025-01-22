@@ -10,6 +10,4 @@ psql -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES_HOST -c "CREATE TABLE prices
                                     );"
 psql -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES_HOST -c "GRANT SELECT, UPDATE, INSERT,DELETE ON prices TO $POSTGRES_USER;"
 psql -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES_HOST -c "SELECT * FROM prices;"
-go run . &
-ps aux | grep go
-curl -s -F "file=@test_data.zip" "http://127.0.0.1:8080/api/v0/prices"
+./project_sem

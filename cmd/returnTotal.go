@@ -14,10 +14,9 @@ type Total struct {
 
 // функция сбора данных после загрузки данных в БД
 func ReturnTotal() Total {
-	//u, p, db := LoadEnv()
+	u, p, db := LoadEnv()
 
-	//connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s", u, p, "localhost", "5432", db)
-	connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s", "validator", "val1dat0r", "localhost", "5432", "project-sem-1")
+	connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s", u, p, "localhost", "5432", db)
 	conn, err := NewPostgres(connStr)
 	if err != nil {
 		log.Fatalf("Error : %v", err)
