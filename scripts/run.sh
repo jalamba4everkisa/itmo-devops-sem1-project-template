@@ -9,6 +9,7 @@ psql -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES_HOST -c "CREATE TABLE prices
                                         create_date DATE NOT NULL
                                     )";
 psql -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES_HOST -c "GRANT SELECT, UPDATE, INSERT,DELETE ON prices TO $POSTGRES_USER;"
+psql -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES_HOST -c "SELECT * FROM prices;"
 go run . &
 ps aux | grep go
 curl -s -F "file=@test_data.zip" "http://localhost:8080/api/v0/prices"
