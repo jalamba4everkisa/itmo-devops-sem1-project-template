@@ -1,6 +1,6 @@
 #!/bin/bash
 export PGPASSWORD=$POSTGRES_PASSWORD
-#sudo systemctl start postgresql
+sudo systemctl start postgresql
 netstat -tulnp
 ps aux | grep postgres
 #sudo -u postgres psql -c 'CREATE DATABASE "'$POSTGRES_DB'";'
