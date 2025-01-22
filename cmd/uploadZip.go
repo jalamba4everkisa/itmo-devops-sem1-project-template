@@ -35,7 +35,7 @@ func UploadZip(w http.ResponseWriter, r *http.Request) []Product {
 	var result []Product
 
 	for _, file := range zipReader.File {
-		if file.Name == "test_data.csv" || file.Name == "data.csv" {
+		if file.Name == "test_data.csv" {
 			result, err = ProcessCSV(file)
 			if err != nil {
 				http.Error(w, "Error reading CSV inside archive: "+err.Error(), http.StatusBadRequest)
