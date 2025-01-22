@@ -7,4 +7,5 @@ psql -U $POSTGRES_USER -d $POSTGRES_DB -h $POSTGRES_HOST -c "CREATE TABLE prices
                                         price REAL NOT NULL,
                                         create_date DATE NOT NULL
                                     )";
+ls
 go run .
