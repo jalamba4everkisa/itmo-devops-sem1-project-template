@@ -1,5 +1,6 @@
 #!/bin/bash
 export PGPASSWORD=$POSTGRES_PASSWORD
+sudo systemctl start postgresql
 psql -U postgres -d $POSTGRES_DB -c "CREATE TABLE prices(
                                         id INTEGER PRIMARY KEY NOT NULL,
                                         name VARCHAR NOT NULL,
