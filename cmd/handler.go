@@ -1,26 +1,17 @@
 package cmd
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 )
 
 //главный хэндлер, роутящий на функции в зависимости от запроса
 
 func PricesHandler(w http.ResponseWriter, r *http.Request) {
-	u, p, db := LoadEnv()
-	connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s", u, p, "localhost", "5432", db)
-	conn, err := NewPostgres(connStr)
-	if err != nil {
-		log.Fatalf("Error : %v", err)
-	}
-	defer conn.Close(context.Background())
 	switch r.Method {
 	case http.MethodGet:
-		products := GetData(conn, connStr)
+		products := GetData(PgxPool)
 		CreateCsv(products)
 		CompressToZip("data.csv")
 		w.Header().Set("Content-Disposition", "attachment; filename=test-data.zip")
@@ -28,8 +19,8 @@ func PricesHandler(w http.ResponseWriter, r *http.Request) {
 		CleanUp()
 	case http.MethodPost:
 		products := UploadZip(w, r)
-		UploadToDb(products, conn, connStr)
-		t, err := json.Marshal(ReturnTotal())
+		total_items := UploadToDb(products, PgxPool)
+		t, err := json.Marshal(ReturnTotal(total_items, PgxPool))
 		if err != nil {
 			fmt.Println(err)
 			return

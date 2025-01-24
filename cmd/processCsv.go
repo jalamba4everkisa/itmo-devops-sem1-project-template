@@ -36,11 +36,11 @@ func ProcessCSV(file *zip.File) ([]Product, error) {
 			continue
 		}
 
-		id, err := strconv.Atoi(record[0])
+		/*id, err := strconv.Atoi(record[0])
 		if err != nil {
 			log.Println("Skipping malformed CSV record (invalid ID):", record, err)
 			continue
-		}
+		}*/
 
 		price, err := strconv.ParseFloat(record[3], 32)
 		if err != nil {
@@ -55,7 +55,7 @@ func ProcessCSV(file *zip.File) ([]Product, error) {
 		}
 
 		product := Product{
-			ID:         id,
+			//ID:         id,
 			Name:       record[1],
 			Category:   record[2],
 			Price:      float32(price),

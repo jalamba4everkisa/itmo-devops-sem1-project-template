@@ -2,17 +2,21 @@ package cmd
 
 import (
 	"context"
+	"fmt"
+	"os"
 
-	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 //функция для коннекта к базе постгри
 
-func NewPostgres(connStr string) (*pgx.Conn, error) {
-	conn, err := pgx.Connect(context.Background(), connStr)
+func NewPostgres(connStr string) *pgxpool.Pool {
+	dbpool, err := pgxpool.New(context.Background(), connStr)
 	if err != nil {
-		return nil, err
+		fmt.Fprintf(os.Stderr, "Unable to create connection pool: %v\n", err)
+		os.Exit(1)
 	}
+	fmt.Println(dbpool.Ping(context.Background()))
 
-	return conn, nil
+	return dbpool
 }

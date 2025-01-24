@@ -26,7 +26,8 @@ func CreateCsv(products []Product) {
 	check(e2)
 
 	for _, pr := range products {
-		line := fmt.Sprintf("%x,%s,%s,%6.2f,%s\n", pr.ID, pr.Name, pr.Category, pr.Price, pr.CreateDate.Format(YYYYMMDD))
+		line := fmt.Sprintf("%d,%s,%s,%6.2f,%s\n", pr.ID, pr.Name, pr.Category, pr.Price, pr.CreateDate.Format(YYYYMMDD))
+		fmt.Println(line)
 		_, e3 := f.WriteString(line)
 		check(e3)
 	}
